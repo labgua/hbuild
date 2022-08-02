@@ -1,9 +1,15 @@
+# carica l'environment
+HB_DIR="$(dirname "$0")/../"
+cd "$HB_DIR"
+. .env
+# spostati nella working dir con riferimento relativo
+cd "$HB_WORKING_DIR"
+
 echo "HBuild for Apache"
 echo "LABGUA SOFTWARE 2022"
+echo "(HB_DIR): $HB_DIR"
+echo "(WORKING_DIR): $HB_WORKING_DIR <- $PWD"
 
-### carica l'environment
-cd "$(dirname "$0")"
-. .env
 
 ## custom defined functions
 hb_info(){
@@ -12,12 +18,6 @@ hb_info(){
 	echo "> info: informazioni sullo script"
 	echo "> clear: cancella i file costruiti in fase di build"
 	echo "> : esegui script"
-	echo ""
-	echo "Info Variabili"
-	echo "HB_WORKING_DIR:$HB_WORKING_DIR"
-	
-	cd "$HB_WORKING_DIR"
-	echo "     --->(PWD):$PWD"
 }
 
 substitute() {
@@ -125,10 +125,6 @@ function action_clear(){
 }
 
 #----------------------------------------------------------------------------------
-
-
-### spostati nella working dir
-cd "$HB_WORKING_DIR"
 
 if [[ $# -ge 1 ]]; then
 	
